@@ -1,0 +1,19 @@
+1. Project Overview
+The Advanced PDF Malware & Steganography Analyzer is a specialized security tool developed in Python to bridge the gap between basic file inspection and advanced forensic analysis. The project addresses the increasing use of PDF files as delivery vectors for cyberattacks, specifically focusing on embedded malicious scripts (JavaScript), hidden URLs, and steganographic data concealment.2. The Development Journey
+Phase 1: Conceptualization & Research
+The journey began with researching how PDF structures are exploited. Unlike flat text files, PDFs are complex object-oriented structures containing streams, dictionaries, and cross-reference tables. The goal was to build a tool that could "look under the hood" without executing any potentially harmful code.
+Phase 2: Core Engine Development
+I focused on building a robust backend using Python’s standard libraries:
+• Regex Engine: Developed to scan for "dangerous" PDF keywords like /OpenAction, /JavaScript, and /Launch.
+• Security Logic: Implemented hashlib for SHA256 file fingerprinting and zlib for the critical task of decompressing internal streams to find obfuscated payloads.
+Phase 3: Integration & UI Design
+To make the tool accessible, I utilized tkinter to build a clean, professional interface. A significant milestone was the integration of the VirusTotal API, allowing the tool to cross-reference file hashes with over 70 global antivirus engines in real-time.
+Phase 4: Steganography Implementation
+The final technical hurdle was adding steganography detection. I implemented heuristics to detect "large stream anomalies" and "whitespace stego," which are common methods for hiding data in plain sight within a document's metadata.
+3. Key Features & Functionalities
+• Quick Triage: Instantly validates the PDF header and flags high-level suspicious indicators.
+• Deep Scan & Object Parsing: Extracts and displays hidden URLs and identifies embedded file indicators (/EF).
+• Stream Decompression: Automatically attempts to decompress FlateDecode streams to scan for hidden JavaScript or shellcode.
+• VirusTotal Connectivity: Uses the file's SHA256 hash to fetch live reputation data from the web.
+• Steganography Heuristics: Detects hidden layers, invisible text, or signatures of known stego tools like OpenPuff.
+• Hex Preview: Provides a low-level view of the file's first 512 bytes for manual header inspection.
